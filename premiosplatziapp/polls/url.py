@@ -2,6 +2,18 @@ from django.urls import path
 
 from . import views
 
-urlpatterns= {
-    path("", views.index, name="index")
-}
+app_name = "polls"
+
+urlpatterns = [
+    # ex: /polls/
+    path("", views.IndexView.as_view(), name="index"),
+    # ex: /polls/5/detail
+    path("<int:pk>/details/", views.DetailView.as_view(), name="details"),
+    # ex: /polls/5/results
+    path("<int:pk>/results/", views.ResultView.as_view(), name="results"),
+    # ex: /polls/5/vote
+    path("<int:question_id>/vote/", views.vote, name="vote"),
+    
+
+]
+
